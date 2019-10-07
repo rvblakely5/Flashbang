@@ -5,6 +5,4 @@ This is a red team tool designed for competition use. The intended use case of t
 
 Flashbang payload - "Flashbang's" the target box, disorienting operator and opening backdoors
 
-AimAssist.py - Iterates through backdoors opened and grabs first found shell to avoid trial and error time
-
 # Instructions
