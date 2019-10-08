@@ -1,3 +1,4 @@
+//Authors: Robby Blakely & Ryan Goodman
 #include <iostream>
 #include "mingw.thread.h"
 //Switch to <thread> if not compiling over mingw
